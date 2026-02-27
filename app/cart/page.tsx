@@ -5,13 +5,17 @@ import { NavBar } from "@/components/NavBar";
 import Link from "next/link";
 
 export default function CartPage() {
-  // Vi henter data og funksjoner fra "ryggsekken" vår
   const { cart, removeFromCart, clearCart } = useCart();
 
-  // Enkel logikk for å regne ut totalt antall (siden vi ikke har pris ennå)
-  const totalItems = cart.length;
+  const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
 
-  const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
+  const totalPrice = cart.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0,
+  );
+
+  const { increaseQuantity } = useCart();
+  const { decreaseQuantity } = useCart();
 
   return (
     <div className="flex min-h-screen flex-col items-center bg-zinc-50 dark:bg-black font-sans">
@@ -48,17 +52,17 @@ export default function CartPage() {
                         <br></br>
                         Price: {item.price}
                       </p>
-                      <div className="input">
-                        <label htmlFor="quantity">Quantity:</label>
-                        <input
-                          type="number"
-                          id="quantity"
-                          name="quantity"
-                          min="1"
-                          max="10"
-                          defaultValue={item.quantity}
-                        />
-                      </div>
+
+                      <button
+                        onClick={() => decreaseQuantity(item.id)}
+                        className="mr-2"
+                      >
+                        -
+                      </button>
+                      <span className="mx-2">{item.quantity}</span>
+                      <button onClick={() => increaseQuantity(item.id)}>
+                        +
+                      </button>
                     </div>
                   </div>
 

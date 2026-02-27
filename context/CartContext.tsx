@@ -1,7 +1,6 @@
 "use client";
 import { createContext, useContext, useState, ReactNode } from "react";
 import { Product } from "@/types/game";
-import { it } from "node:test";
 
 // 1. Definer hva som skal være i "ryggsekken"
 interface CartContextType {
@@ -9,6 +8,8 @@ interface CartContextType {
   addToCart: (product: Product) => void;
   removeFromCart: (id: string) => void;
   clearCart: () => void;
+  increaseQuantity: (id: string) => void;
+  decreaseQuantity: (id: string) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -32,34 +33,40 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
   };
 
-  /* const addToCart = (product: Product) => {
-    if (cart.find((item) => {if(item.id === product.id){item.quantity += 1})) */
-
-  /*
-
-
-    setCart((prev) => {
-      prev.map((item) => {
-        if (item.id === product.id) {
-          item.quantity += 1;
-          return prev;
-        }
-      });
-      return [...prev, product];
-    }); */
-
-  // Tips: Her kan du senere legge til logikk for å sjekke om varen alt finnes
-  /* }; */
-
   const removeFromCart = (id: string) => {
     setCart((prev) => prev.filter((item) => item.id !== id));
   };
 
   const clearCart = () => setCart([]);
 
+  const increaseQuantity = (id: string) => {
+    setCart((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
+      ),
+    );
+  };
+
+  const decreaseQuantity = (id: string) => {
+    setCart((prev) =>
+      prev
+        .map((item) =>
+          item.id === id ? { ...item, quantity: item.quantity - 1 } : item,
+        )
+        .filter((item) => item.quantity > 0),
+    );
+  };
+
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, clearCart }}
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        clearCart,
+        increaseQuantity,
+        decreaseQuantity,
+      }}
     >
       {children}
     </CartContext.Provider>
