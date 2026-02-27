@@ -3,6 +3,7 @@
 import { Product } from "@/types/game";
 import { useEffect, useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { toast } from "react-toastify";
 
 import Image from "next/image";
 
@@ -58,15 +59,17 @@ export function ProductDetail({ id }: { id: string }) {
           ) : (
             <p className="text-gray-500">No reviews yet for this product.</p>
           )}
-          <button
-            onClick={() => {
-              addToCart(product);
-            }}
-            className="text-white bg-orange-500/50  hover:bg-orange-600 py-2 px-4 rounded  hover:cursor-pointer mt-4"
-          >
-            Add to Cart
-          </button>
         </div>
+
+        <button
+          onClick={() => {
+            toast.success("Successfully added to cart!");
+            addToCart(product);
+          }}
+          className="relative z-50 text-white bg-orange-500 py-2 px-4 rounded mt-4"
+        >
+          Add to Cart
+        </button>
       </div>
     </div>
   );

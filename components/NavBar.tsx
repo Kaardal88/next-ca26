@@ -2,6 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { CartBadge } from "./CartBadge";
 
 export function NavBar() {
   const pathname = usePathname();
@@ -23,16 +24,25 @@ export function NavBar() {
             </Link>
           </div>
           <div>
-            <div className="ml-10 flex items-baseline space-x-4">
+            <div className="ml-10 flex items-baseline space-x-4 bg-blue-300 hover:bg-blue-400 rounded-2xl ">
               <Link
                 href="/cart"
-                className={
+                className={`relative inline-flex items-center px-3 py-2 rounded-md text-sm font-medium ${
                   pathname === "/cart"
-                    ? "text-blue-600 font-bold"
-                    : " text-gray-500  hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                }
+                    ? "text-black font-bold"
+                    : "text-black hover:text-gray-900 dark:hover:text-white"
+                }`}
               >
-                Cart
+                <span className="relative">
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/263/263142.png"
+                    alt="Cart"
+                    width={20}
+                    height={20}
+                    className="mr-2"
+                  />
+                  <CartBadge />
+                </span>
               </Link>
             </div>
           </div>

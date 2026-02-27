@@ -4,6 +4,8 @@ import { useCart } from "@/context/CartContext";
 import Image from "next/image";
 import Link from "next/link";
 
+import { toast } from "react-toastify";
+
 export function FetchProducts() {
   const url = "https://v2.api.noroff.dev/online-shop";
 
@@ -61,6 +63,7 @@ export function FetchProducts() {
                 <button
                   onClick={() => {
                     addToCart(product);
+                    toast.success(`${product.title} added to cart`);
                   }}
                   className="text-white bg-orange-500/50  hover:bg-orange-600 py-2 px-4 rounded  hover:cursor-pointer mt-4"
                 >

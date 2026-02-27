@@ -11,6 +11,8 @@ export default function CartPage() {
   // Enkel logikk for å regne ut totalt antall (siden vi ikke har pris ennå)
   const totalItems = cart.length;
 
+  const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
+
   return (
     <div className="flex min-h-screen flex-col items-center bg-zinc-50 dark:bg-black font-sans">
       <NavBar />
@@ -46,6 +48,17 @@ export default function CartPage() {
                         <br></br>
                         Price: {item.price}
                       </p>
+                      <div className="input">
+                        <label htmlFor="quantity">Quantity:</label>
+                        <input
+                          type="number"
+                          id="quantity"
+                          name="quantity"
+                          min="1"
+                          max="10"
+                          defaultValue={item.quantity}
+                        />
+                      </div>
                     </div>
                   </div>
 
@@ -53,23 +66,22 @@ export default function CartPage() {
                     onClick={() => removeFromCart(item.id)}
                     className="text-red-500 text-sm hover:bg-red-50 px-2 py-1 rounded"
                   >
-                    Fjern
+                    Delete
                   </button>
                 </li>
               ))}
             </ul>
 
             <div className="mt-8 border-t pt-6">
-              <p className="text-lg font-semibold">
-                Totalt antall varer: {totalItems}
-              </p>
+              <p className="text-lg font-semibold">Items total: {totalItems}</p>
+              <p className="text-lg font-semibold">Total price: {totalPrice}</p>
 
               <div className="flex gap-4 mt-6">
                 <button
                   onClick={clearCart}
                   className="px-4 py-2 border border-gray-300 rounded hover:bg-gray-100"
                 >
-                  Tøm kurv
+                  Empty cart
                 </button>
 
                 <button
@@ -78,7 +90,7 @@ export default function CartPage() {
                   }
                   className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 ml-auto"
                 >
-                  Gå til kassen
+                  Checkout
                 </button>
               </div>
             </div>
