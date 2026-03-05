@@ -4,6 +4,7 @@ import { Product } from "@/types/game";
 import { useEffect, useState } from "react";
 import { useCart } from "@/context/CartContext";
 import { toast } from "react-toastify";
+import styles from "@/css/loader.module.css";
 
 import Image from "next/image";
 
@@ -24,7 +25,9 @@ export function ProductDetail({ id }: { id: string }) {
     fetchSingleProduct();
   }, [id]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) {
+    return <span className={styles.loader}></span>;
+  }
   if (!product) return <div>Product not found</div>;
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -66,7 +69,7 @@ export function ProductDetail({ id }: { id: string }) {
             toast.success("Successfully added to cart!");
             addToCart(product);
           }}
-          className="relative z-50 text-white bg-orange-500 py-2 px-4 rounded mt-4"
+          className="relative z-50 text-white bg-orange-500 py-2 px-4 rounded mt-4 hover:cursor-pointer hover:bg-orange-600 transition duration-300 ease-in-out"
         >
           Add to Cart
         </button>

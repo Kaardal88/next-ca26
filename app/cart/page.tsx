@@ -76,26 +76,23 @@ export default function CartPage() {
               ))}
             </ul>
 
-            <div className="mt-8 border-t pt-6">
+            <div className="mt-8 border-t pt-6 ">
               <p className="text-lg font-semibold">Items total: {totalItems}</p>
               <p className="text-lg font-semibold">Total price: {totalPrice}</p>
 
-              <div className="flex gap-4 mt-6">
+              <div className="flex gap-4 mt-6 justify-between ">
                 <button
                   onClick={clearCart}
                   className="px-4 py-2 border border-gray-300 rounded hover:bg-gray-100"
                 >
                   Empty cart
                 </button>
-
-                <button
-                  onClick={() =>
-                    alert("Takk for handelen! (Dette er neste steg)")
-                  }
-                  className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 ml-auto"
+                <Link
+                  href="/checkout"
+                  className="px-4 py-2 border border-gray-300 rounded hover:bg-gray-100"
                 >
                   Checkout
-                </button>
+                </Link>
               </div>
             </div>
           </>

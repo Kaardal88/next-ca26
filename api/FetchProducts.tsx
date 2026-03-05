@@ -1,26 +1,34 @@
-import { useState, useEffect } from "react";
+"use client";
+import { useState, useEffect, useRef } from "react";
 import { Product } from "@/types/game";
 import { useCart } from "@/context/CartContext";
 import Image from "next/image";
 import Link from "next/link";
+import styles from "@/css/loader.module.css";
 
 import { toast } from "react-toastify";
 
 export function FetchProducts() {
-  const url = "https://v2.api.noroff.dev/online-shop";
+  const [currentPage, setCurrentPage] = useState(1);
 
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
   const { addToCart } = useCart();
+  const hasInitialized = useRef(false);
 
   useEffect(() => {
+    const limit = 8;
     const fetchData = async () => {
       try {
+        setLoading(true);
+
+        const url = `https://v2.api.noroff.dev/online-shop?page=${currentPage}&limit=${limit}`;
         const response = await fetch(url);
         const data = await response.json();
+        console.log("Fetched products:", data.data);
 
-        setProducts(data.data);
+        setProducts((prev) => [...prev, ...data.data]);
       } catch (err) {
         setError(err as Error);
       } finally {
@@ -28,10 +36,39 @@ export function FetchProducts() {
       }
     };
 
-    fetchData();
-  }, []);
+    if (!hasInitialized.current) {
+      fetchData();
+      hasInitialized.current = true;
+    }
+  }, [currentPage]);
 
-  if (loading) return <div>Loading...</div>;
+  useEffect(() => {
+    const limit = 8;
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+
+        const url = `https://v2.api.noroff.dev/online-shop?page=${currentPage}&limit=${limit}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log("Fetched products:", data.data);
+
+        setProducts((prev) => [...prev, ...data.data]);
+      } catch (err) {
+        setError(err as Error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (currentPage > 1) {
+      fetchData();
+    }
+  }, [currentPage]);
+
+  if (loading && products.length === 0) {
+    return <span className={styles.loader}></span>;
+  }
   if (error) return <div>Error: {error.message}</div>;
   try {
     return (
@@ -48,6 +85,7 @@ export function FetchProducts() {
                 href="/product/[id]"
                 as={`/product/${product.id}`}
                 className="no-underline"
+                scroll={false}
               >
                 <Image
                   src={product.image.url}
@@ -58,7 +96,13 @@ export function FetchProducts() {
                 />
                 <h3 className="text-xl font-semibold mb-2">{product.title}</h3>
               </Link>
-              <span className="text-lg font-bold">Rating:{product.rating}</span>
+              <span className="text-lg ">Price: ${product.price}</span>
+              <span className="text-sm text-gray-500 ml-2">
+                ({product.discountedPrice} off)
+              </span>
+              <br />
+              <br />
+              <span className="text-sm ">Rating:{product.rating}</span>
               <div className="text-gray-700 mt-2">
                 <button
                   onClick={() => {
@@ -73,6 +117,12 @@ export function FetchProducts() {
             </li>
           ))}
         </ul>
+        <button
+          onClick={() => setCurrentPage(currentPage + 1)}
+          className="text-white bg-orange-500/50  hover:bg-orange-600 py-2 px-4 rounded  hover:cursor-pointer mt-4"
+        >
+          {loading ? "Loading..." : "Load More"}
+        </button>
       </div>
     );
   } catch (error) {

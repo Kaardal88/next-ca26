@@ -3,14 +3,16 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CartBadge } from "./CartBadge";
+import logo from "../assets/logo.png";
+import Image from "next/image";
 
 export function NavBar() {
   const pathname = usePathname();
 
   return (
-    <nav className="w-full bg-white dark:bg-gray-900 shadow">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <nav className="w-full h-32 bg-white dark:bg-gray-900 shadow flex items-center ">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 ">
+        <div className=" flex items-center justify-between max-w-5xl mx-auto ">
           <div className="shrink-0">
             <Link
               href="/"
@@ -20,7 +22,9 @@ export function NavBar() {
                   : "text-gray-600 dark:hover:text-white"
               }
             >
-              MyApp
+              <span>
+                <Image src={logo.src} width={120} height={50} alt="Logo" />
+              </span>
             </Link>
           </div>
           <div>
