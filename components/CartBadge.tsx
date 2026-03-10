@@ -2,7 +2,6 @@ import { useCart } from "@/context/CartContext";
 
 export function CartBadge() {
   const { cart } = useCart();
-  console.log(cart);
 
   return (
     <div

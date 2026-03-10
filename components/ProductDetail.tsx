@@ -1,6 +1,6 @@
 "use client";
 
-import { Product } from "@/types/game";
+import { Product } from "@/types/product";
 import { useEffect, useState } from "react";
 import { useCart } from "@/context/CartContext";
 import { toast } from "react-toastify";

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CartBadge } from "./CartBadge";
@@ -27,6 +27,7 @@ export function NavBar() {
               </span>
             </Link>
           </div>
+
           <div>
             <div className="ml-10 flex items-baseline space-x-4 bg-blue-300 hover:bg-blue-400 rounded-2xl ">
               <Link
