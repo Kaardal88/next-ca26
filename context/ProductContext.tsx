@@ -28,8 +28,12 @@ export function ProductProvider({ children }: { children: ReactNode }) {
         const products = await fetchProducts();
         setProducts(products);
         setLoading(false);
-      } catch (err: any) {
-        setError(`Failed to fetch products: ${err.status}`);
+      } catch (err) {
+        setError(
+          err instanceof Error
+            ? err.message
+            : `Failed to fetch products: ${err}`,
+        );
         setLoading(false);
       }
     };

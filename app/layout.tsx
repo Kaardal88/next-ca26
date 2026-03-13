@@ -31,10 +31,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <ToastProvider />
         <CartProvider>
           <ProductProvider>
             {children}
-            <ToastProvider />
           </ProductProvider>
         </CartProvider>
       </body>
