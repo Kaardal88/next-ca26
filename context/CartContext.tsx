@@ -9,6 +9,7 @@ interface CartContextType {
   clearCart: () => void;
   increaseQuantity: (id: string) => void;
   decreaseQuantity: (id: string) => void;
+  formattedPrice: (price: number) => string;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -55,6 +56,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
     );
   };
 
+  const formattedPrice = (price: number) => {
+    return price.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+    });
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -64,6 +72,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         clearCart,
         increaseQuantity,
         decreaseQuantity,
+        formattedPrice,
       }}
     >
       {children}

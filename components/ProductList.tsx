@@ -6,7 +6,7 @@ import { SearchBar } from "@/components/SearchBar";
 import { SortPrice } from "@/components/SortPrice";
 
 import { useCart } from "@/context/CartContext";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useProducts } from "@/context/ProductContext";
 
 const productsPerPage = 8;
@@ -14,11 +14,9 @@ export function ProductList() {
   const { products, loading, error } = useProducts();
   const { addToCart } = useCart();
 
-  /*  const [products, setProducts] = useState<Product[]>([]); */
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  /* const [loading, setLoading] = useState(true); */
-  /*  const [error, setError] = useState<string | null>(null); */
+
   const [sortOrder, setSortOrder] = useState("default");
 
   if (loading) {
@@ -55,7 +53,7 @@ export function ProductList() {
         {visibleProducts.map((product) => (
           <li
             key={product.id}
-            className="bg-gray-800 hover:bg-gray-900 p-4 rounded-lg shadow hover:shadow-lg transition"
+            className="bg-gray-800 hover:bg-gray-900 p-4 rounded-lg shadow hover:shadow-lg transition hover:scale-105 "
           >
             <Link href={`/product/${product.id}`} className="no-underline">
               <Image
@@ -84,7 +82,7 @@ export function ProductList() {
                   addToCart(product);
                   toast.success(`${product.title} added to cart`);
                 }}
-                className="text-white bg-orange-500/50 hover:bg-orange-600 py-2 px-4 rounded mt-4"
+                className="text-white bg-orange-500/50 hover:bg-orange-600 py-2 px-4 rounded mt-4 cursor-pointer shadow "
               >
                 Add to Cart
               </button>

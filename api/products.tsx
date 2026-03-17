@@ -12,18 +12,3 @@ export async function fetchProducts(): Promise<Product[]> {
   const productList = await response.json();
   return productList.data ?? [];
 }
-
-/*  const fetchProducts = async () => {
-      try {
-        const response = await fetch("https://v2.api.noroff.dev/online-shop");
-        const data = await response.json();
-        setProducts(data.data);
-      } catch (err: any) {
-        console.log(err);
-        setError(`Failed to fetch products: ${err.status}`);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts(); */

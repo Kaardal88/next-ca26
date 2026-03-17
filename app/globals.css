@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  color-scheme: dark;
+  --font-geist-sans: "Geist Sans", sans-serif;
+  --font-geist-mono: "Geist Mono", monospace;
+  color-scheme: dark light;
 }
 
 @theme inline {

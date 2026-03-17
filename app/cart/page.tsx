@@ -14,6 +14,11 @@ export default function CartPage() {
     0,
   );
 
+  const formattedTotalPrice = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(totalPrice);
+
   const { increaseQuantity } = useCart();
   const { decreaseQuantity } = useCart();
 
@@ -78,7 +83,9 @@ export default function CartPage() {
 
             <div className="mt-8 border-t pt-6 ">
               <p className="text-lg font-semibold">Items total: {totalItems}</p>
-              <p className="text-lg font-semibold">Total price: {totalPrice}</p>
+              <p className="text-lg font-semibold">
+                Total price: {formattedTotalPrice}
+              </p>
 
               <div className="flex gap-4 mt-6 justify-between ">
                 <button
