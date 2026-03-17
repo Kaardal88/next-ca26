@@ -11,6 +11,7 @@ export default function ContactForm() {
 
   const [errors, setErrors] = useState<{
     name?: string[];
+    subject?: string[];
     email?: string[];
     message?: string[];
   }>({});
@@ -32,6 +33,7 @@ export default function ContactForm() {
 
     const data = {
       name: formData.get("name") as string,
+      subject: formData.get("subject") as string,
       email: formData.get("email") as string,
       message: formData.get("message") as string,
     };
@@ -80,6 +82,23 @@ export default function ContactForm() {
                 type="text"
                 id="name"
                 name="name"
+                className="w-full p-2 border bg-gray-50 rounded-md"
+              />
+            </div>
+            {errors.subject && (
+              <p className="text-red-500">{errors.subject[0]}</p>
+            )}
+            <div className="mb-4">
+              <label
+                htmlFor="subject"
+                className="block font-semibold text-white"
+              >
+                Subject
+              </label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
                 className="w-full p-2 border bg-gray-50 rounded-md"
               />
             </div>
