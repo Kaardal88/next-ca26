@@ -78,7 +78,7 @@ export default function CheckoutPage() {
         <div
           className={styles.receipt}
           style={{
-            marginTop: "10rem",
+            marginTop: "5rem",
             padding: "1.5rem",
             display: "flex",
             flexDirection: "column",
@@ -128,7 +128,7 @@ export default function CheckoutPage() {
                 toast.success("Order sent! Thank you for your purchase.");
               }}
               disabled={loading}
-              className="mt-4 px-4 py-2 text-white rounded bg-green-600 transition-colors cursor-pointer shadow hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="mt-4 w-full px-4 py-2 text-white rounded bg-green-600 hover:bg-green-500 transition-colors cursor-pointer shadow hover:scale-105 disabled:opacity-50  disabled:cursor-not-allowed  "
             >
               {loading ? <span className={loader.loader}></span> : "Send Order"}
             </button>

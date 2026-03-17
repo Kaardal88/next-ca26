@@ -26,7 +26,7 @@ export default function CartPage() {
     <div className="flex min-h-screen flex-col items-center bg-zinc-50 dark:bg-black font-sans">
       <NavBar />
 
-      <main className="flex w-full max-w-3xl flex-col p-8 mt-24 bg-white dark:bg-zinc-900 shadow-md rounded-lg">
+      <main className="flex w-full max-w-3xl flex-col p-8 mt-24 bg-white/10 shadow-md rounded-lg">
         <h1 className="text-2xl font-bold mb-6">Shopping Cart</h1>
 
         {cart.length === 0 ? (
@@ -40,43 +40,44 @@ export default function CartPage() {
           <>
             <ul className="divide-y divide-gray-200">
               {cart.map((item, index) => (
-                <li
-                  key={`${item.id}-${index}`}
-                  className="py-4 flex justify-between items-center"
-                >
-                  <div className="flex items-center gap-4">
+                <li key={`${item.id}-${index}`} className="py-4 flex  ">
+                  <div className="flex relative items-center w-full justify-between gap-4">
                     <img
                       src={item.image.url}
                       alt={item.image.alt}
                       className="w-16 h-16 object-cover rounded"
                     />
-                    <div>
-                      <h2 className="font-semibold">{item.title}</h2>
-                      <p className="text-sm text-gray-500">
+                    <div className="flex justify-between  items-start w-full">
+                      <p className="text-sm text-white">
                         Product: {item.title}
                         <br></br>
                         Price: {item.price}
                       </p>
-
-                      <button
-                        onClick={() => decreaseQuantity(item.id)}
-                        className="mr-2"
-                      >
-                        -
-                      </button>
-                      <span className="mx-2">{item.quantity}</span>
-                      <button onClick={() => increaseQuantity(item.id)}>
-                        +
-                      </button>
+                      <div className="flex  items-center mt-2  w-24">
+                        <button
+                          onClick={() => decreaseQuantity(item.id)}
+                          className="mr-2 text-lg font-bold hover:bg-red-700 rounded px-2 py-1 hover:cursor-pointer"
+                        >
+                          -
+                        </button>
+                        <span className=" bg-gray-50 text-black rounded py-1 px-4 font-bold">
+                          {item.quantity}
+                        </span>
+                        <button
+                          onClick={() => increaseQuantity(item.id)}
+                          className="ml-2 text-lg font-bold hover:bg-green-700 rounded px-2 py-1 hover:cursor-pointer"
+                        >
+                          +
+                        </button>
+                      </div>
                     </div>
+                    <button
+                      onClick={() => removeFromCart(item.id)}
+                      className="text-white border border-red-500 text-sm hover:bg-red-700 px-2 py-1 ml-4 rounded hover:cursor-pointer"
+                    >
+                      Delete
+                    </button>
                   </div>
-
-                  <button
-                    onClick={() => removeFromCart(item.id)}
-                    className="text-red-500 text-sm hover:bg-red-50 px-2 py-1 rounded"
-                  >
-                    Delete
-                  </button>
                 </li>
               ))}
             </ul>
@@ -90,13 +91,13 @@ export default function CartPage() {
               <div className="flex gap-4 mt-6 justify-between ">
                 <button
                   onClick={clearCart}
-                  className="px-4 py-2 border border-gray-300 rounded hover:bg-gray-100"
+                  className="px-4 py-2 border border-gray-300 rounded hover:bg-red-700 hover:text-white hover:cursor-pointer"
                 >
                   Empty cart
                 </button>
                 <Link
                   href="/checkout"
-                  className="px-4 py-2 border border-gray-300 rounded hover:bg-gray-100"
+                  className="px-4 py-2 border border-gray-300 rounded hover:bg-green-700 hover:text-white hover:cursor-pointer"
                 >
                   Checkout
                 </Link>

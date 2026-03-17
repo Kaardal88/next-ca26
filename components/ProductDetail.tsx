@@ -38,17 +38,20 @@ export function ProductDetail({ id }: { id: string }) {
         height={500}
         className="rounded-lg shadow-lg"
       />
-      <div>
+      <div className="p-6 bg-gray-900 rounded-lg shadow-lg">
         <h1 className="text-4xl font-bold mb-4">{product.title}</h1>
         <p className="text-white mb-6">{product.description}</p>
-        <span className="text-2xl font-bold">{product.price},-</span>
-        <p className="text-gray-600 mt-4">{product.tags}</p>
+        <span className="text-2xl font-bold bg-amber-300 text-gray-800 py-2 px-3 rounded ">
+          ${product.price}
+        </span>
+        <h3 className="  font-semibold mt-8 ">Tags:</h3>
+        <p className="text-gray-200 mt-4">#{product.tags}</p>
 
         <div className="mt-8">
           <h2 className="text-2xl font-bold mb-4">Reviews</h2>
 
           {product.reviews && product.reviews && product.reviews.length > 0 ? (
-            <ul className="divide-y">
+            <ul className="space-y-4">
               {product.reviews.map((review) => (
                 <li key={review.id} className="py-4">
                   <h3 className="font-semibold">{review.username}</h3>
