@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import styles from "@/css/loader.module.css";
 
 import Image from "next/image";
+import { starRating } from "./starRating";
 
 export function ProductDetail({ id }: { id: string }) {
   const [product, setProduct] = useState<Product | null>(null);
@@ -30,41 +31,76 @@ export function ProductDetail({ id }: { id: string }) {
   }
   if (!product) return <div>Product not found</div>;
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-      <Image
-        src={product.image.url}
-        alt={product.image.alt}
-        width={500}
-        height={500}
-        className="rounded-lg shadow-lg"
-      />
-      <div className="p-6 bg-gray-900 rounded-lg shadow-lg">
-        <h1 className="text-4xl font-bold mb-4">{product.title}</h1>
-        <p className="text-white mb-6">{product.description}</p>
-        <span className="text-2xl font-bold bg-amber-300 text-gray-800 py-2 px-3 rounded ">
-          ${product.price}
-        </span>
-        <h3 className="  font-semibold mt-8 ">Tags:</h3>
-        <p className="text-gray-200 mt-4">#{product.tags}</p>
+    <div className="grid grid-cols-1 gap-10 max-w-3xl mx-auto">
+      <div className=" bg-gray-900 rounded-lg shadow-lg">
+        <Image
+          src={product.image.url}
+          alt={product.image.alt}
+          width={500}
+          height={500}
+          className="rounded-lg shadow-lg w-full h-auto"
+        />
+      </div>
 
-        <div className="mt-8">
-          <h2 className="text-2xl font-bold mb-4">Reviews</h2>
+      <div className="p-6  bg-gray-900 rounded-lg shadow-lg ">
+        <div className="flex items-center mb-4 flex-col lg:flex-col lg:justify-between">
+          <h1 className="text-4xl font-bold mb-4 self-start">
+            {product.title}
+          </h1>
+          <p className="text-white mb-12 self-start">{product.description}</p>
 
-          {product.reviews && product.reviews && product.reviews.length > 0 ? (
-            <ul className="space-y-4">
-              {product.reviews.map((review) => (
-                <li key={review.id} className="py-4">
-                  <h3 className="font-semibold">{review.username}</h3>
-                  <p className="text-sm text-gray-400">
-                    Rating: {review.rating}/5
-                  </p>
-                  <p className="italic">{review.description}</p>
-                </li>
-              ))}
-            </ul>
+          {product.discountedPrice < product.price ? (
+            <>
+              <span className="lg:text-4xl sm:text-2xl text-black font-bold bg-amber-400 p-4  rounded-tr-lg rounded-bl-lg self-end">
+                Price: ${product.discountedPrice}
+                <span className="text-sm font-light text-gray-800 ml-2 line-through self-start">
+                  ${product.price}
+                </span>
+              </span>
+            </>
           ) : (
-            <p className="text-gray-500">No reviews yet for this product.</p>
+            <span className="lg:text-3xl sm:text-2xl text-black font-bold bg-amber-400 p-4  rounded-tr-lg rounded-bl-lg self-end">
+              Price: ${product.price}
+            </span>
           )}
+
+          <h3 className="font-semibold mt-8 w-full">Tags:</h3>
+          <p className="text-gray-200 mt-4 bg-gray-800 py-2 px-3 rounded self-start">
+            {product.tags}
+          </p>
+
+          <div className="mt-8  w-full">
+            <h2 className="text-2xl font-bold mb-4 divider-gray-800 border-b pb-2">
+              Reviews
+            </h2>
+            <p className="text-gray-400 italic mb-4">Rating:</p>
+            <div className="flex items-center mb-8">
+              {starRating(product.rating || 0)}
+              <span className="text-sm text-gray-500 ml-2">
+                {" "}
+                {product.rating}/5
+              </span>
+            </div>
+
+            {product.reviews && product.reviews.length > 0 ? (
+              <ul className="space-y-4">
+                {product.reviews.map((review) => (
+                  <li
+                    key={review.id}
+                    className="py-4 bg-gray-800 rounded-lg p-4"
+                  >
+                    <h3 className="font-semibold">{review.username}</h3>
+                    <p className="text-sm text-gray-400 ">
+                      Rating: {review.rating}/5
+                    </p>
+                    <p className="italic">{review.description}</p>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-gray-500">No reviews yet for this product.</p>
+            )}
+          </div>
         </div>
 
         <button
@@ -72,7 +108,7 @@ export function ProductDetail({ id }: { id: string }) {
             toast.success("Successfully added to cart!");
             addToCart(product);
           }}
-          className="relative z-50 text-white bg-orange-500 py-2 px-4 rounded mt-4 hover:cursor-pointer hover:bg-orange-600 transition duration-300 ease-in-out"
+          className="relative  z-50 text-white font-bold bg-green-700 py-2 px-4 rounded mt-12 hover:cursor-pointer hover:bg-green-600 scale-100 hover:scale-105 duration-300 ease-in-out w-full "
         >
           Add to Cart
         </button>

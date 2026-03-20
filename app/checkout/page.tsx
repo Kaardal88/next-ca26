@@ -65,76 +65,81 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center  bg-black font-sans">
+    <>
       <NavBar />
+      <div className="flex min-h-screen flex-col items-center  bg-black font-sans">
+        <main className="flex w-full max-w-2xl flex-col p-8 mt-24  shadow-md rounded-lg">
+          <h1 className="text-3xl font-bold mb-6 text-center">Checkout</h1>
 
-      <main className="flex w-full max-w-2xl flex-col p-8 mt-24  shadow-md rounded-lg">
-        <h1 className="text-3xl font-bold mb-6 text-center">Checkout</h1>
-
-        <div className="text-center text-2xl font-semibold mb-6 text-white">
-          {submitted && <p>Thank you for your order!</p>}
-        </div>
-
-        <div
-          className={styles.receipt}
-          style={{
-            marginTop: "5rem",
-            padding: "1.5rem",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <Image
-            src={logo}
-            alt="Receipt"
-            width={200}
-            height={200}
-            className="mx-auto mb-6"
-          />
-          <h1 className="text-2xl font-bold mb-6 text-black">Receipt</h1>
-
-          <p className="text-black italic mb-4">
-            Order date: {new Date().toLocaleString()}
-          </p>
-
-          <ul className="divide-y text-black">
-            {cart.map((item) => {
-              const itemTotal = new Intl.NumberFormat("en-US", {
-                style: "currency",
-                currency: "USD",
-              }).format(item.price * item.quantity);
-              return (
-                <li key={item.id} className="py-4 flex justify-between">
-                  <span>
-                    {item.title} x {item.quantity}
-                  </span>
-                  <span>{itemTotal}</span>
-                </li>
-              );
-            })}
-          </ul>
-
-          <div className="mt-6">
-            <span className="overline text-lg font-semibold flex justify-end text-black  mb-6 ">
-              <p className=" text-lg font-semibold flex justify-end text-black py-4">
-                Total: {formattedTotalPrice}
-              </p>
-            </span>
-
-            <button
-              type="submit"
-              onClick={() => {
-                handleOrder();
-                toast.success("Order sent! Thank you for your purchase.");
-              }}
-              disabled={loading}
-              className="mt-4 w-full px-4 py-2 text-white rounded bg-green-600 hover:bg-green-500 transition-colors cursor-pointer shadow hover:scale-105 disabled:opacity-50  disabled:cursor-not-allowed  "
-            >
-              {loading ? <span className={loader.loader}></span> : "Send Order"}
-            </button>
+          <div className="text-center text-2xl font-semibold mb-6 text-white">
+            {submitted && <p>Thank you for your order!</p>}
           </div>
-        </div>
-      </main>
-    </div>
+
+          <div
+            className={styles.receipt}
+            style={{
+              marginTop: "5rem",
+              padding: "1.5rem",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <Image
+              src={logo}
+              alt="Receipt"
+              width={200}
+              height={200}
+              className="mx-auto mb-6"
+            />
+            <h1 className="text-2xl font-bold mb-6 text-black">Receipt</h1>
+
+            <p className="text-black italic mb-4">
+              Order date: {new Date().toLocaleString()}
+            </p>
+
+            <ul className="divide-y text-black">
+              {cart.map((item) => {
+                const itemTotal = new Intl.NumberFormat("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                }).format(item.price * item.quantity);
+                return (
+                  <li key={item.id} className="py-4 flex justify-between">
+                    <span>
+                      {item.title} x {item.quantity}
+                    </span>
+                    <span>{itemTotal}</span>
+                  </li>
+                );
+              })}
+            </ul>
+
+            <div className="mt-6">
+              <span className="overline text-lg font-semibold flex justify-end text-black  mb-6 ">
+                <p className=" text-lg font-semibold flex justify-end text-black py-4">
+                  Total: {formattedTotalPrice}
+                </p>
+              </span>
+
+              <button
+                type="submit"
+                onClick={() => {
+                  handleOrder();
+                  toast.success("Order sent! Thank you for your purchase.");
+                }}
+                disabled={loading}
+                className="mt-4 w-full px-4 py-2 text-white rounded bg-green-600 hover:bg-green-500 transition-colors cursor-pointer shadow hover:scale-105 disabled:opacity-50  disabled:cursor-not-allowed  "
+              >
+                {loading ? (
+                  <span className={loader.loader}></span>
+                ) : (
+                  "Send Order"
+                )}
+              </button>
+            </div>
+          </div>
+        </main>
+      </div>
+    </>
   );
 }

@@ -43,24 +43,25 @@ export function ProductList() {
   );
 
   return (
-    <div className="mt-8">
+    <div className="mt-8 mb-8">
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <SortPrice setSortOrder={setSortOrder} />
 
-      <h3 className="text-xl font-bold mb-4">Online Shop</h3>
+      <h3 className="text-xl font-bold mb-4 mt-4">Online Shop</h3>
 
-      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:w-5xl gap-6 mt-8">
+      <ul className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 lg:w-5xl gap-6 mt-8">
         {visibleProducts.map((product) => {
           const discountedPercentage =
             (product.discountedPrice / product.price) * 100;
+
           return (
             <li
               key={product.id}
               className="bg-gray-800 hover:bg-gray-900 p-4 rounded-lg shadow hover:shadow-lg transition hover:scale-105 "
             >
               <Link href={`/product/${product.id}`} className="no-underline">
-                <div>
-                  <div className="relative">
+                <div className="">
+                  <div className="relative ">
                     {discountedPercentage < 100 && (
                       <div className="absolute top-2 right-2 bg-red-500 text-white text-sm font-bold py-1 px-2 rounded">
                         {Math.trunc(discountedPercentage)}%
@@ -80,12 +81,18 @@ export function ProductList() {
                 </div>
               </Link>
 
-              <span className="text-lg ">
-                Price: ${product.discountedPrice}
-              </span>
-              <span className="text-sm text-gray-500 ml-2 line-through">
-                ({product.price})
-              </span>
+              {product.discountedPrice < product.price ? (
+                <>
+                  <span className="text-lg">
+                    Price: ${product.discountedPrice}
+                  </span>
+                  <span className="text-sm text-gray-500 ml-2 line-through">
+                    ${product.price}
+                  </span>
+                </>
+              ) : (
+                <span className="text-lg">Price: ${product.price}</span>
+              )}
 
               <br />
               <br />
@@ -103,7 +110,7 @@ export function ProductList() {
                     addToCart(product);
                     toast.success(`${product.title} added to cart`);
                   }}
-                  className="text-white bg-orange-500/50 hover:bg-orange-600 py-2 px-4 rounded mt-4 cursor-pointer shadow "
+                  className="text-white bg-orange-500/50 hover:bg-green-700/50 py-2 px-4 rounded mt-4 cursor-pointer shadow "
                 >
                   Add to Cart
                 </button>

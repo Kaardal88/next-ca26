@@ -2,7 +2,7 @@ import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 
 export function starRating(rating: number) {
   if (rating === 0) {
-    return <span className="text-gray-500 text-sm">No reviews yet</span>;
+    return <span className="text-gray-500 text-sm">No ratings yet</span>;
   }
 
   const stars = [];
@@ -16,5 +16,5 @@ export function starRating(rating: number) {
     }
   }
 
-  return <div className="flex">{stars}</div>;
+  return <div className="flex text-lg">{stars}</div>;
 }
