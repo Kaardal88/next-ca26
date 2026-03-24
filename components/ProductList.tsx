@@ -47,7 +47,7 @@ export function ProductList() {
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <SortPrice setSortOrder={setSortOrder} />
 
-      <h3 className="text-xl font-bold mb-4 mt-4">Online Shop</h3>
+      <h3 className="text-xl font-bold mb-4 mt-4 text-white">Online Shop</h3>
 
       <ul className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 lg:w-5xl gap-6 mt-8">
         {visibleProducts.map((product) => {
@@ -57,7 +57,7 @@ export function ProductList() {
           return (
             <li
               key={product.id}
-              className="bg-gray-800 hover:bg-gray-900 p-4 rounded-lg shadow hover:shadow-lg transition hover:scale-105 "
+              className="text-white bg-gray-800 hover:bg-gray-900 p-4 rounded-lg shadow hover:shadow-lg transition hover:scale-105 "
             >
               <Link href={`/product/${product.id}`} className="no-underline">
                 <div className="">
@@ -122,7 +122,7 @@ export function ProductList() {
 
       <button
         onClick={() => setCurrentPage((prev) => prev + 1)}
-        className="text-white bg-orange-500/50 hover:bg-orange-600 py-2 px-4 rounded mt-6"
+        className="text-white bg-orange-500/50 hover:bg-orange-600 py-2 px-4 rounded mt-6 hover:cursor-pointer"
       >
         Load More
       </button>

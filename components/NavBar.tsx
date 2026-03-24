@@ -6,6 +6,8 @@ import { CartBadge } from "./CartBadge";
 import logo from "../assets/logo.png";
 import Image from "next/image";
 
+import { FaShoppingCart } from "react-icons/fa";
+
 export function NavBar() {
   const pathname = usePathname();
 
@@ -19,7 +21,7 @@ export function NavBar() {
               className={
                 pathname === "/"
                   ? "text-blue-600 font-bold"
-                  : "text-gray-600 dark:hover:text-white"
+                  : "text-gray-600 hover:text-white"
               }
             >
               <span>
@@ -31,32 +33,25 @@ export function NavBar() {
           <div className="space-between flex">
             <Link
               href="/contact"
-              className={`relative inline-flex items-center px-3 py-2 rounded-md text-sm font-medium ${
+              className={`relative inline-flex items-center px-3 text-white hover:text-blue-300 hover:border py-2 rounded-md text-lg font-medium  ${
                 pathname === "/contact"
-                  ? "text-white font-bold"
-                  : "text-white hover:text-gray-900 dark:hover:text-white"
               }`}
             >
               Contact
             </Link>
 
-            <div className="ml-10 flex items-baseline space-x-4 bg-blue-300 hover:bg-blue-400 rounded-2xl ">
+            <div className="ml-10 flex items-baseline space-x-4 transition hover:scale-110    rounded-2xl ">
               <Link
                 href="/cart"
-                className={`relative inline-flex items-center px-3 py-2 rounded-md text-sm font-medium ${
+                className={`relative inline-flex items-center px-3 py-2 rounded-md text-sm font-medium   ${
                   pathname === "/cart"
-                    ? "text-black font-bold"
-                    : "text-black hover:text-gray-900 dark:hover:text-white"
                 }`}
               >
-                <span className="relative">
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/512/263/263142.png"
-                    alt="Cart"
-                    width={20}
-                    height={20}
-                    className="mr-2"
-                  />
+                <span className="relative ">
+                  <div className="  border border-gray-500 hover:bg-blue-600   rounded-full p-2 sm:text-1xl lg:text-2xl">
+                    <FaShoppingCart className="fill-blue-300 hover:fill-blue-100" />{" "}
+                  </div>
+
                   <CartBadge />
                 </span>
               </Link>

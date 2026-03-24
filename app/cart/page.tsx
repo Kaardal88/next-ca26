@@ -2,6 +2,7 @@
 
 import { useCart } from "@/context/CartContext";
 import { NavBar } from "@/components/NavBar";
+import { Footer } from "@/components/Footer";
 import Link from "next/link";
 import { FaTrash } from "react-icons/fa";
 
@@ -26,8 +27,8 @@ export default function CartPage() {
   return (
     <>
       <NavBar />
-      <div className="flex min-h-screen flex-col items-center bg-black font-sans px-2">
-        <main className="flex w-full max-height-screen  flex-col p-8 mt-24 bg-white/10 shadow-md rounded-lg sm:max-w-4xl px-4 ">
+      <div className="flex min-h-screen flex-col items-center bg-black  font-sans px-2">
+        <main className="flex w-full max-height-screen  flex-col p-8 mt-24 bg-white/10 shadow-md rounded-lg sm:max-w-4xl px-4 text-white ">
           <h1 className="text-xl sm:text-2xl font-bold mb-6">Shopping Cart</h1>
 
           {cart.length === 0 ? (
@@ -59,19 +60,19 @@ export default function CartPage() {
                           <br></br>
                           Price: {item.price}
                         </p>
-                        <div className="flex  items-center mt-2  w-24">
+                        <div className="flex  items-center mt-2  w-24 ">
                           <button
                             onClick={() => decreaseQuantity(item.id)}
-                            className="mr-2 text-lg font-bold hover:bg-red-700 rounded px-2 py-1 hover:cursor-pointer"
+                            className="mr-2 text-lg font-bold hover:bg-red-700 rounded px-2 py-1 hover:cursor-pointer border"
                           >
                             -
                           </button>
-                          <span className=" lg:text-lg sm:text-xs text-white rounded py-1 px-4 ">
+                          <span className=" lg:text-lg sm:text-xs text-black bg-gray-200 rounded py-1 px-4 border">
                             {item.quantity}
                           </span>
                           <button
                             onClick={() => increaseQuantity(item.id)}
-                            className="ml-2 text-lg font-bold hover:bg-green-700  rounded px-2 py-1 hover:cursor-pointer"
+                            className="ml-2 text-lg font-bold hover:bg-green-700  rounded px-2 py-1 hover:cursor-pointer border"
                           >
                             +
                           </button>
@@ -116,6 +117,7 @@ export default function CartPage() {
           )}
         </main>
       </div>
+      <Footer />
     </>
   );
 }

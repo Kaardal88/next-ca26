@@ -1,4 +1,5 @@
 "use client";
+import { Footer } from "@/components/Footer";
 import { NavBar } from "@/components/NavBar";
 import { ProductList } from "@/components/ProductList";
 import { ToastProvider } from "@/components/ToastProvider";
@@ -13,6 +14,7 @@ export default function Home() {
           <ToastProvider />
         </main>
       </div>
+      <Footer />
     </>
   );
 }

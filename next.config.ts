@@ -2,7 +2,14 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  images: { domains: ["static.noroff.dev"] },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "static.noroff.dev",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

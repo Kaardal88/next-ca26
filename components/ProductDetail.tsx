@@ -31,8 +31,11 @@ export function ProductDetail({ id }: { id: string }) {
   }
   if (!product) return <div>Product not found</div>;
   return (
-    <div className="grid grid-cols-1 gap-10 max-w-3xl mx-auto">
-      <div className=" bg-gray-900 rounded-lg shadow-lg">
+    <div
+      className="grid grid-cols-1 lg:grid-cols-2 gap-10
+                 mx-auto px-4 lg:grid-cols-[1fr_1.3fr]"
+    >
+      <div className=" rounded-lg shadow-lg">
         <Image
           src={product.image.url}
           alt={product.image.alt}
@@ -42,7 +45,7 @@ export function ProductDetail({ id }: { id: string }) {
         />
       </div>
 
-      <div className="p-6  bg-gray-900 rounded-lg shadow-lg ">
+      <div className="p-6  bg-gray-900 text-white rounded-lg shadow-lg ">
         <div className="flex items-center mb-4 flex-col lg:flex-col lg:justify-between">
           <h1 className="text-4xl font-bold mb-4 self-start">
             {product.title}

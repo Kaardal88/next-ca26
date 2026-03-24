@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import styles from "@/css/receipt.module.css";
 import { NavBar } from "@/components/NavBar";
+import { Footer } from "@/components/Footer";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import logo from "@/assets/logo.png";
@@ -29,8 +30,6 @@ export default function CheckoutPage() {
 
   useEffect(() => {
     if (submitted) {
-      toast.success("Order sent successfully!");
-
       const timer = setTimeout(() => {
         router.push("/");
       }, 2000);
@@ -41,6 +40,7 @@ export default function CheckoutPage() {
   const handleOrder = () => {
     setLoading(true);
     setSubmitted(true);
+    toast.success("Order sent successfully!");
     setTimeout(() => {
       clearCart();
       setLoading(false);
@@ -125,7 +125,6 @@ export default function CheckoutPage() {
                 type="submit"
                 onClick={() => {
                   handleOrder();
-                  toast.success("Order sent! Thank you for your purchase.");
                 }}
                 disabled={loading}
                 className="mt-4 w-full px-4 py-2 text-white rounded bg-green-600 hover:bg-green-500 transition-colors cursor-pointer shadow hover:scale-105 disabled:opacity-50  disabled:cursor-not-allowed  "
@@ -140,6 +139,7 @@ export default function CheckoutPage() {
           </div>
         </main>
       </div>
+      <Footer />
     </>
   );
 }

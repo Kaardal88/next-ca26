@@ -3,7 +3,7 @@
 :root {
   --font-geist-sans: "Geist Sans", sans-serif;
   --font-geist-mono: "Geist Mono", monospace;
-  color-scheme: dark light;
+  color-scheme: light;
 }
 
 @theme inline {

@@ -4,6 +4,7 @@ import { formValidation } from "@/lib/schema/formValidation";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useState, useEffect } from "react";
+import { Footer } from "@/components/Footer";
 
 export default function ContactForm() {
   const router = useRouter();
@@ -119,7 +120,6 @@ export default function ContactForm() {
                   Email
                 </label>
                 <input
-                  type="email"
                   id="email"
                   name="email"
                   className="w-full p-2 border bg-gray-50 rounded-md"
@@ -153,6 +153,7 @@ export default function ContactForm() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
