@@ -28,6 +28,7 @@ export default function CheckoutPage() {
     setLoading(true);
     setOrder(cart);
     clearCart();
+    toast.success("Order placed successfully!");
     setTimeout(() => {
       router.push("/receipt");
     }, 1500);
@@ -75,7 +76,6 @@ export default function CheckoutPage() {
                 type="submit"
                 onClick={() => {
                   handleOrder();
-                  toast.success("Order placed successfully!");
                 }}
                 disabled={loading}
                 className="mt-4 w-full px-4 py-2 text-white rounded bg-green-600 hover:bg-green-500 transition-colors cursor-pointer shadow hover:scale-105 disabled:opacity-50  disabled:cursor-not-allowed  "
