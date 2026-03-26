@@ -8,10 +8,10 @@ export default function Home() {
   return (
     <>
       <NavBar />
-      <div className="flex min-h-screen  flex-col  w-full  bg-black font-sans relative">
+      <div className="flex min-h-screen  flex-col    bg-black font-sans ">
         <main
-          className="grid grid-cols-1 lg:grid-cols-2 gap-10
-                 mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-20 bg-black"
+          className="
+                max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  py-20 bg-black"
         >
           <ProductList />
           <ToastProvider />
