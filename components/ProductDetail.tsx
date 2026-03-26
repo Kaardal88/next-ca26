@@ -33,7 +33,7 @@ export function ProductDetail({ id }: { id: string }) {
   return (
     <div
       className="grid grid-cols-1 lg:grid-cols-2 gap-10
-                 mx-auto px-4 lg:grid-cols-[1fr_1.3fr]"
+                 mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-20 bg-black "
     >
       <div className=" rounded-lg shadow-lg">
         <Image
@@ -45,7 +45,7 @@ export function ProductDetail({ id }: { id: string }) {
         />
       </div>
 
-      <div className="p-6  bg-gray-900 text-white rounded-lg shadow-lg ">
+      <div className="p-6  bg-gray-900 text-white rounded-lg shadow-lg sm:max-w-full ">
         <div className="flex items-center mb-4 flex-col lg:flex-col lg:justify-between">
           <h1 className="text-4xl font-bold mb-4 self-start">
             {product.title}

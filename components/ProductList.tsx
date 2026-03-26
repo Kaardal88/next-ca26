@@ -43,7 +43,7 @@ export function ProductList() {
   );
 
   return (
-    <div className="mt-8 mb-8">
+    <div className="mt-8 mb-8 bg-black">
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <SortPrice setSortOrder={setSortOrder} />
 

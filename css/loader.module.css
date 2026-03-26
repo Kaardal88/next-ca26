@@ -1,12 +1,16 @@
 .loader {
   width: 48px;
   height: 48px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
   border: 3px solid #fff;
   border-radius: 50%;
   display: inline-block;
   position: relative;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
+  background: black;
 }
 .loader::after {
   content: "";
