@@ -10,12 +10,15 @@ interface CartContextType {
   increaseQuantity: (id: string) => void;
   decreaseQuantity: (id: string) => void;
   formattedPrice: (price: number) => string;
+  order: Product[];
+  setOrder: (order: Product[]) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<Product[]>([]);
+  const [order, setOrder] = useState<Product[]>([]);
   const addToCart = (product: Product) => {
     setCart((prev) => {
       const existingItem = prev.find((item) => item.id === product.id);
@@ -67,6 +70,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
     <CartContext.Provider
       value={{
         cart,
+        order,
+        setOrder,
         addToCart,
         removeFromCart,
         clearCart,
