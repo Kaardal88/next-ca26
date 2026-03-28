@@ -43,13 +43,16 @@ export function ProductList() {
   );
 
   return (
-    <div className="mt-8 mb-8 bg-black">
-      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+    <div className="mt-8 mb-24 bg-black flex flex-col  max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h3 className="text-2xl font-bold mb-4 mt-4 text-white mx-auto">
+        Online Shop
+      </h3>
+      <div className="mb-4 max-w-md w-full mx-auto mt-8">
+        <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      </div>
       <SortPrice setSortOrder={setSortOrder} />
 
-      <h3 className="text-xl font-bold mb-4 mt-4 text-white">Online Shop</h3>
-
-      <ul className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 lg:w-5xl gap-6 mt-8">
+      <ul className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-2 lg:grid-cols-4  gap-6 mt-8">
         {visibleProducts.map((product) => {
           const discountedPercentage =
             (product.discountedPrice / product.price) * 100;

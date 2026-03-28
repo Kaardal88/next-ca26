@@ -6,7 +6,7 @@ export function SearchBar({
   setSearchTerm: (term: string) => void;
 }) {
   return (
-    <div className="mb-4 w-full ">
+    <div className="mb-4 max-w-md  mt-8">
       <input
         type="text"
         placeholder="Search products..."

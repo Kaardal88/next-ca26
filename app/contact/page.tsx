@@ -56,7 +56,7 @@ export default function ContactForm() {
     <>
       <NavBar />
       <div className="flex min-h-screen flex-col items-center  bg-black font-sans ">
-        <div className="min-h-screen flex-col items-center justify-center  max-w-5xl mx-auto w-full px-4 mt-50">
+        <div className="min-h-screen flex-col items-center justify-center  max-w-5xl mx-auto w-full px-4 mt-8">
           <h1 className="text-3xl font-bold text-white mb-8 text-center py-8">
             Contact Us
           </h1>

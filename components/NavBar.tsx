@@ -33,7 +33,7 @@ export function NavBar() {
           <div className="space-between flex">
             <Link
               href="/contact"
-              className={`relative inline-flex items-center px-3 text-white hover:text-blue-300 hover:border py-2 rounded-md text-lg font-medium  ${
+              className={`relative inline-flex items-center px-3 text-white hover:text-blue-300 hover:border py-2 rounded-md text-sm sm:text-base lg:text-lg font-medium  ${
                 pathname === "/contact"
               }`}
             >
