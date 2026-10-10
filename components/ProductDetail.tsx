@@ -11,7 +11,7 @@ import { starRating } from "./starRating";
 
 export function ProductDetail({ id }: { id: string }) {
   const [product, setProduct] = useState<Product | null>(null);
-  const { addToCart } = useCart();
+  const { cart, addToCart } = useCart();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -30,10 +30,14 @@ export function ProductDetail({ id }: { id: string }) {
     return <span className={styles.loader}></span>;
   }
   if (!product) return <div>Product not found</div>;
+
+  const quantityInCart =
+    cart.find((item) => item.id === product.id)?.quantity ?? 0;
+
   return (
     <div
       className="grid grid-cols-1 lg:grid-cols-2 gap-10
-                 mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-20 bg-black "
+                 mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-2xl py-20 bg-black "
     >
       <div className=" rounded-lg shadow-lg">
         <Image
@@ -67,9 +71,24 @@ export function ProductDetail({ id }: { id: string }) {
             </span>
           )}
 
+          <button
+            onClick={() => {
+              toast.success("Successfully added to cart!");
+              addToCart(product);
+            }}
+            className="self-end flex items-center gap-2 text-white font-bold bg-green-700 py-2 px-4 rounded mt-4 hover:cursor-pointer hover:bg-green-600 scale-100 hover:scale-105 duration-300 ease-in-out"
+          >
+            Add to Cart
+            {quantityInCart > 0 && (
+              <span className="bg-white text-green-800 text-sm rounded-full min-w-6 h-6 px-2 flex items-center justify-center">
+                {quantityInCart}
+              </span>
+            )}
+          </button>
+
           <h3 className="font-semibold mt-8 w-full">Tags:</h3>
           <p className="text-gray-200 mt-4 bg-gray-800 py-2 px-3 rounded self-start">
-            {product.tags}
+            {product.tags?.join(", ")}
           </p>
 
           <div className="mt-8  w-full">
@@ -86,7 +105,13 @@ export function ProductDetail({ id }: { id: string }) {
             </div>
 
             {product.reviews && product.reviews.length > 0 ? (
-              <ul className="space-y-4">
+              <ul
+                className={`space-y-4 ${
+                  product.reviews.length > 2
+                    ? "max-h-64 overflow-y-auto pr-2"
+                    : ""
+                }`}
+              >
                 {product.reviews.map((review) => (
                   <li
                     key={review.id}
@@ -105,16 +130,6 @@ export function ProductDetail({ id }: { id: string }) {
             )}
           </div>
         </div>
-
-        <button
-          onClick={() => {
-            toast.success("Successfully added to cart!");
-            addToCart(product);
-          }}
-          className="relative  z-50 text-white font-bold bg-green-700 py-2 px-4 rounded mt-12 hover:cursor-pointer hover:bg-green-600 scale-100 hover:scale-105 duration-300 ease-in-out w-full "
-        >
-          Add to Cart
-        </button>
       </div>
     </div>
   );

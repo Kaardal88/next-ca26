@@ -90,6 +90,7 @@ export default function ContactForm() {
                   id="name"
                   name="name"
                   className="w-full p-2 border bg-gray-50 rounded-md"
+                  placeholder="Your name"
                 />
               </div>
               {errors.subject && (
@@ -107,6 +108,7 @@ export default function ContactForm() {
                   id="subject"
                   name="subject"
                   className="w-full p-2 border bg-gray-50 rounded-md"
+                  placeholder="How can we help you?"
                 />
               </div>
               {errors.email && (
@@ -123,6 +125,7 @@ export default function ContactForm() {
                   id="email"
                   name="email"
                   className="w-full p-2 border bg-gray-50 rounded-md"
+                  placeholder="Your email address"
                 />
               </div>
               <div className="mb-4">
@@ -140,6 +143,7 @@ export default function ContactForm() {
                   name="message"
                   rows={4}
                   className="w-full p-2 border bg-gray-50 rounded-md"
+                  placeholder="Please write as detailed as you can"
                 ></textarea>
               </div>
               <button
@@ -149,6 +153,12 @@ export default function ContactForm() {
               >
                 Submit
               </button>
+              <a
+                href="/"
+                className="block w-full text-center text-white py-2 px-4 rounded-md border border-white/40 hover:bg-white/10"
+              >
+                Cancel
+              </a>
             </form>
           </div>
         </div>

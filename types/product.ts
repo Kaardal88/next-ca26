@@ -6,7 +6,7 @@ export type Product = {
   discountedPrice: number;
   rating: number;
   description: string;
-  tags: string;
+  tags: string[];
   reviews: Review[];
   quantity: number;
   image: {

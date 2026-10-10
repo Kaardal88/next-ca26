@@ -4,9 +4,11 @@ type SortProps = {
 
 export function SortPrice({ setSortOrder }: SortProps) {
   return (
+    <>
+    <label htmlFor="sort" className="text-white">Sort</label>
     <select
       onChange={(e) => setSortOrder(e.target.value)}
-      className="mb-4 mt-8 p-2 border rounded text-white max-w-xs"
+      className="w-full p-2 border rounded text-white"
     >
       <option value="default" className="text-gray-500">
         Sort by Price
@@ -18,5 +20,6 @@ export function SortPrice({ setSortOrder }: SortProps) {
         High to Low
       </option>
     </select>
+    </>
   );
 }

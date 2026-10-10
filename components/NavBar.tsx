@@ -14,7 +14,7 @@ export function NavBar() {
   return (
     <nav className="w-full h-32 bg-gray-900 shadow flex items-center ">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 ">
-        <div className=" flex items-center justify-between max-w-5xl mx-auto ">
+        <div className=" flex items-center justify-between max-w-7xl mx-auto ">
           <div className="shrink-0">
             <Link
               href="/"

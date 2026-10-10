@@ -90,15 +90,17 @@ export default function CartPage() {
                 ))}
               </ul>
 
-              <div className="mt-8 border-t pt-6 w-full    ">
-                <p className="text-xs sm:text-sm text-white font-semibold mb-4 ">
+              <div className="mt-8 border-t pt-6 w-full  ">
+                <div className="flex-col justify-end">
+                <p className="text-xs sm:text-sm text-white font-semibold mb-4 flex justify-end ">
                   Items total: {totalItems}
                 </p>
-                <p className="lg:text-lg sm:text-sm font-semibold">
+                <p className="lg:text-lg sm:text-sm font-semibold flex justify-end">
                   Total price: {formattedTotalPrice}
                 </p>
+                </div>
 
-                <div className="flex gap-4 mt-6 justify-between ">
+                <div className="flex gap-4 mt-12 justify-between ">
                   <button
                     onClick={clearCart}
                     className="px-4 py-2 border border-gray-300 rounded hover:bg-red-700 hover:text-white hover:cursor-pointer"
